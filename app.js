@@ -57,7 +57,7 @@ var options = {
   'autoindex': 'boolean',
   'https': 'boolean',
   'redirect-to-https': 'boolean',
-  'auth-required': 'boolean'
+  'auth': 'boolean'
 };
 
 var parsers = {
@@ -251,7 +251,7 @@ function validSiteFilter(site) {
     console.log('WARNING: skipping ' + site.shortname + ' because no backends have been specified (hint: --backends=portnumber)');
     return false;
   }
-  if(site['auth-required']) {
+  if(site.auth) {
     console.log('Accessing this site required auth! Provide a standard .htpasswd file at /etc/nginx/.htpasswd');
   }
   return true;

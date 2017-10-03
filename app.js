@@ -56,7 +56,8 @@ var options = {
   'static': 'string',
   'autoindex': 'boolean',
   'https': 'boolean',
-  'redirect-to-https': 'boolean'
+  'redirect-to-https': 'boolean',
+  'auth-required': 'boolean'
 };
 
 var parsers = {
@@ -249,6 +250,9 @@ function validSiteFilter(site) {
   if ((!(site.backends && site.backends.length)) && (!site.static)) {
     console.log('WARNING: skipping ' + site.shortname + ' because no backends have been specified (hint: --backends=portnumber)');
     return false;
+  }
+  if(site['auth-required']) {
+    console.log('Accessing this site required auth! Provide a standard .htpasswd file at /etc/nginx/.htpasswd');
   }
   return true;
 }
